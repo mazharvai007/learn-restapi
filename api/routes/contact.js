@@ -20,9 +20,20 @@ contactRoute.post('/', (req, res, next) => {
 contactRoute.get('/:id', (req, res, next) => {
 	const id = req.params.id;
 	res.json({
-		id,
+		message: 'This is a GET route',
 	});
 });
 
-// POST - single contact
-contactRoute.post('/:id', (req, res, next) => {});
+// PUT - single contact
+contactRoute.put('/:id', (req, res, next) => {
+	res.json({
+		message: 'This is a PUT route',
+	});
+});
+
+// DELETE - single contact
+contactRoute.delete('/:id', (req, res, next) => {
+	res.json({
+		message: 'This is a DELETE route',
+	});
+});
