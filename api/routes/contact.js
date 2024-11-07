@@ -11,8 +11,17 @@ contactRoute.get('/', (req, res, next) => {
 
 // POST
 contactRoute.post('/', (req, res, next) => {
-	res.send({
-		message: 'This is contact Post route',
+	contacts.push({
+		name: req.body.name,
+		email: req.body.email,
+	});
+
+	// res.send({
+	// 	message: 'This is contact Post route',
+	// });
+
+	res.status(201).json({
+		message: 'Data Saved',
 	});
 });
 
