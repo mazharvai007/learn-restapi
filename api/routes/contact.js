@@ -1,48 +1,26 @@
 import express from 'express';
-import { contacts } from '../../dummy_data.js';
+import {
+	deleteContactController,
+	getAllContactController,
+	getSingleContactController,
+	postContactController,
+	putSingleContactController,
+} from '../controllers/contact.js';
 
 export const contactRoute = express.Router();
 
 // GET
 
-contactRoute.get('/', (req, res, next) => {
-	res.json(contacts);
-});
+contactRoute.get('/', getAllContactController);
 
 // POST
-contactRoute.post('/', (req, res, next) => {
-	contacts.push({
-		name: req.body.name,
-		email: req.body.email,
-	});
-
-	// res.send({
-	// 	message: 'This is contact Post route',
-	// });
-
-	res.status(201).json({
-		message: 'Data Saved',
-	});
-});
+contactRoute.post('/', postContactController);
 
 // GET - single contact
-contactRoute.get('/:id', (req, res, next) => {
-	const id = req.params.id;
-	res.json({
-		message: 'This is a GET route',
-	});
-});
+contactRoute.get('/:id', getSingleContactController);
 
 // PUT - single contact
-contactRoute.put('/:id', (req, res, next) => {
-	res.json({
-		message: 'This is a PUT route',
-	});
-});
+contactRoute.put('/:id', putSingleContactController);
 
 // DELETE - single contact
-contactRoute.delete('/:id', (req, res, next) => {
-	res.json({
-		message: 'This is a DELETE route',
-	});
-});
+contactRoute.delete('/:id', deleteContactController);

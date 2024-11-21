@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import validator from 'validator';
+import mongoose, { Schema } from 'mongoose';
+import validate from 'validator';
 
 // Contact Schema
 const contactSchema = new Schema({
@@ -14,9 +14,9 @@ const contactSchema = new Schema({
 		trim: true,
 		validate: {
 			validator: (v) => {
-				return validator.isEmail(v);
+				return validate.isEmail(v);
 			},
-			message: `${v} is not an email`,
+			message: `${validate} is not an email`,
 		},
 	},
 	phone: {
