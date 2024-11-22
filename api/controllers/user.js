@@ -1,5 +1,6 @@
 import User from '../models/UserModel.js';
 import bcript from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const registerController = (req, res, next) => {
 	bcript.hash(req.body.password, 10, (err, hash) => {
@@ -41,8 +42,14 @@ const loginController = (req, res, next) => {
 				}
 
 				if (result) {
+					let token = jwt.sign(
+						{ email: user.email, _id: user._id },
+						'SECRET',
+						{ expiresIn: '2h' }
+					);
 					res.json({
 						message: 'Login Successful',
+						token,
 					});
 				} else {
 					res.json({

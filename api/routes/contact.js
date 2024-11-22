@@ -6,6 +6,7 @@ import {
 	postContactController,
 	putSingleContactController,
 } from '../controllers/contact.js';
+import authenticate from '../middleware/authenticate.js';
 
 export const contactRoute = express.Router();
 
@@ -14,13 +15,13 @@ export const contactRoute = express.Router();
 contactRoute.get('/', getAllContactController);
 
 // POST
-contactRoute.post('/', postContactController);
+contactRoute.post('/', authenticate, postContactController);
 
 // GET - single contact
 contactRoute.get('/:id', getSingleContactController);
 
 // PUT - single contact
-contactRoute.put('/:id', putSingleContactController);
+contactRoute.put('/:id', authenticate, putSingleContactController);
 
 // DELETE - single contact
-contactRoute.delete('/:id', deleteContactController);
+contactRoute.delete('/:id', authenticate, deleteContactController);

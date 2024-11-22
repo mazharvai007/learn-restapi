@@ -4,6 +4,7 @@ import {
 	registerController,
 	usersController,
 } from '../controllers/user.js';
+import authenticate from '../middleware/authenticate.js';
 
 export const userRoute = express.Router();
 
@@ -11,4 +12,4 @@ userRoute.post('/login', loginController);
 
 userRoute.post('/register', registerController);
 
-userRoute.get('/', usersController);
+userRoute.get('/', authenticate, usersController);
