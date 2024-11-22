@@ -10,7 +10,7 @@ const authenticate = (req, res, next) => {
 		next();
 	} catch (error) {
 		res.json({
-			message: 'Authentication Failed.',
+			message: `Authentication Failed. ${error}`,
 		});
 	}
 };
